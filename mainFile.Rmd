@@ -2,7 +2,7 @@
 title: "PROJET_STAT"
 author: "BODIANG Assane & AIDARA SIDI MOHAMED"
 date: "23 mars 2018"
-output: pdf_document
+output:
 ---
 
 # Analysis of the french population since 1982/ Analyse de la population française depuis 1982
@@ -36,15 +36,20 @@ Etant donné que nous sommes étudiants en France, nous avons donc décidé d'étudie
 	 
 ## Analyse:
 
-### Remarque I:  Montrer que la variation du ratio (naissances/mortalites) est contigente de celle des tranches d'ages de la population française.
+### Remarque I: 
+Montrer que la variation du ratio (naissances/mortalites) est contigente de celle des tranches d'ages de la population française.
 
-### Remarque II: La dimunition des naissances est inversement proportionnelle au vieillissement de la population du fait de la faible variation du taux de                   mortalite d'années en années.
+### Remarque II: 
+La dimunition des naissances est inversement proportionnelle au vieillissement de la population du fait de la faible variation du taux de mortalite d'années en années.
   
 ## Methodes:
-#### Visualiser: l'histogramme des chiffres sur les naissances par année et par tranche d'age.
-#### Visualiser: le pourcentage de chaque tranche d'age par rapport à la population  française
-#### Conclusion: Relation cause à effet entre naissance,mortalité et répartition des tranches d'ages.
-	
+#### Visualiser:
+L'histogramme des chiffres sur les naissances par année et par tranche d'age.
+#### Visualiser:
+Le pourcentage de chaque tranche d'age par rapport à la population  française
+#### Conclusion
+Relation cause à effet entre naissance,mortalité et répartition des tranches d'ages.
+
 
 ## Ensemble des bibliothèques à charger (à installer au préalable)
 ```{r setup, include=FALSE}
@@ -53,6 +58,8 @@ library(ggplot2);
 library(dplyr);
 library(gridExtra);
 library(xlsx);
+library(plotly);
+library(reshape);
 ```
 
 ## Chargement de dataframes pour nos jeux de données
@@ -60,6 +67,12 @@ library(xlsx);
 header=TRUE
 df1<- read.xlsx("Composantes de la croissance démographique France métropolitaine.xls",1)
 df2<- read.xlsx("Évolution de la structure de la population France métropolitaine.xls",1)
+#df<- merge(df1,df2, by = c('Annee'), all=TRUE)
 ```
 
-## 
+
+
+
+```{r}
+
+```
