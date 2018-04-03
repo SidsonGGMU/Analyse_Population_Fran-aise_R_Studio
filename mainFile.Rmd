@@ -74,5 +74,10 @@ df2<- read.xlsx("Évolution de la structure de la population France métropolita
 
 
 ```{r}
- c(df1$Annee) y1 <- c(df1$Nombre.de.naissances.vivantes) y2 <- c(df1$Nombre.de.deces) data <- data.frame(x, y1, y2) plot_ly(data, x = ~x, y = ~y1, type = 'bar', name = 'Nombre de naissances', marker = list(color = 'rgb(49,130,189)')) %>% add_trace(y = ~y2, name = 'Nombre de décès', marker = list(color = 'rgb(204,204,204)'))%>% layout(xaxis = list(title = "", tickangle = -45), yaxis = list(title = ""), margin = list(b = 100), barmode = 'group')
+ c(df1$Annee)
+ y1 <- c(df1$Nombre.de.naissances.vivantes) 
+ y2 <- c(df1$Nombre.de.deces) 
+ data <- data.frame(x, y1, y2) plot_ly(data, x = ~x, y = ~y1, type = 'bar', name = 'Nombre de naissances', marker = list(color = 'rgb(49,130,189)')) %>% 
+ add_trace(y = ~y2, name = 'Nombre de décès', marker = list(color = 'rgb(204,204,204)'))%>% 
+ layout(xaxis = list(title = "", tickangle = -45), yaxis = list(title = ""), margin = list(b = 100), barmode = 'group')
 ```
