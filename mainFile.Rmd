@@ -2,7 +2,7 @@
 title: "PROJET_STAT"
 author: "BODIANG Assane & AIDARA SIDI MOHAMED"
 date: "23 mars 2018"
-output:
+output: pdf_document
 ---
 
 # Analysis of the french population since 1982/ Analyse de la population française depuis 1982
@@ -19,81 +19,47 @@ Etant donné que nous sommes étudiants en France, nous avons donc décidé d'étudie
 
 ## Problématique posée: Vieillissement de la population française depuis 1982.
 
-## SOURCES: https://www.insee.fr/fr/statistiques/1892117?sommaire=1912926
+### SOURCES: https://www.insee.fr/fr/statistiques/1892117?sommaire=1912926
 
-## Données:
+### Données:
 
-### Données 1: Composantes de la croissance démographique, France métropolitaine.
+#### Données 1: Composantes de la croissance démographique, France métropolitaine.
 * **-p**: populations 2016, 2017, 2018, état civil 2017, soldes migratoires 2015, 2016, 2017 : résultats provisoires à fin 2017.
-* **-nd**: non disponible.
-* **-Champ**: France hors Mayotte jusqu en 2014 et France inclus Mayotte à partir de 2014
-* **-Source**: Insee, estimations de population et statistiques de l'état civil
+* ** -nd **: non disponible.
+* ** -Champ **: France hors Mayotte jusqu en 2014 et France inclus Mayotte à partir de 2014
+* ** -Source **: Insee, estimations de population et statistiques de l'état civil
     
-### Données 2: Évolution de la structure de la population, France métropolitaine.
+#### Données 2: Évolution de la structure de la population, France métropolitaine.
 * **-p**: résultats provisoires à fin 2017.
-* **-Champ**: France métropolitaine
-* **-Source**: Insee, estimations de population
+* ** -Champ **: France métropolitaine
+* ** -Source **: Insee, estimations de population
 	 
 ## Analyse:
 
-### Remarque I: 
-Montrer que la variation du ratio (naissances/mortalites) est contigente de celle des tranches d'ages de la population française.
+### Remarque I:  Montrer que la variation du ratio (naissances/mortalites) est contigente de celle des tranches d'ages de la population française.
 
-### Remarque II: 
-La dimunition des naissances est inversement proportionnelle au vieillissement de la population du fait de la faible variation du taux de mortalite d'années en années.
+### Remarque II: La dimunition des naissances est inversement proportionnelle au vieillissement de la population du fait de la faible variation du taux de                   mortalite d'années en années.
   
 ## Methodes:
-### Visualiser:
-L'histogramme des chiffres sur les naissances par année et par tranche d'age.
-### Visualiser:
-Le pourcentage de chaque tranche d'age par rapport à la population  française
-### Conclusion
-Relation cause à effet entre naissance,mortalité et répartition des tranches d'ages.
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+#### Visualiser: l'histogramme des chiffres sur les naissances par année et par tranche d'age.
+#### Visualiser: le pourcentage de chaque tranche d'age par rapport à la population  française
+#### Conclusion: Relation cause à effet entre naissance,mortalité et répartition des tranches d'ages.
+	
 
 ## Ensemble des bibliothèques à charger (à installer au préalable)
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2);
 library(dplyr);
+library(gridExtra);
 library(xlsx);
 ```
 
 ## Chargement de dataframes pour nos jeux de données
-
 ```{r}
 header=TRUE
 df1<- read.xlsx("Composantes de la croissance démographique France métropolitaine.xls",1)
-df2<- read.xlsx("Evolution de la structure de la population France métropolitaine.xls",1)
-naissances<- df1$Nombre.de.naissances.vivantes
-deces<- df1$Nombre.de.deces
-tranchesJeunes<-df2$de.0.a.19.ans.1
-tranchesVieux<-df2$X65.ans.ou.plus.1
+df2<- read.xlsx("Évolution de la structure de la population France métropolitaine.xls",1)
 ```
 
-
-## Histogramme comparatif entre le nombre de naissances vivantes et le nombre de décès
-```{r fig.width=11}
-df2 <- data.frame(Categories=rep(c("Naissances vivantes", "Décès"), each=37),
-Annees=rep(c(df1$Annee),2),
-Enregistrements=c(naissances,deces))
-ggplot(data=df2, aes(x=Annees, y=Enregistrements, fill=Categories)) +
-geom_bar(stat="identity", position=position_dodge())+
-scale_x_continuous(breaks = round(seq(1980, 2020, by = 5),1)) +
-theme_minimal()
-```
-
-## Histogramme comparatif entre les tranches d'âges (Jeunes: moins de 20ans et Vieux: plus de 65 ans)
-```{r fig.width=10}
-df2 <- data.frame(Categories=rep(c("Jeunes", "Vieux"), each=37),
-Annees=rep(c(df1$Annee),2),
-Pourcentage=c(tranchesJeunes,tranchesVieux))
-ggplot(data=df2, aes(x=Annees, y=Pourcentage, fill=Categories)) +
-geom_bar(stat="identity", position=position_dodge())+
-scale_x_continuous(breaks = round(seq(1980, 2020, by = 5),1)) +
-theme_minimal()
-```
+## 
